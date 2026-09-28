@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invincible Aspirants Academy | Admissions Open</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Playfair Display for headers, Plus Jakarta Sans for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#F5E9CA',      /* Background Cream */
+              lightCream: '#FAF3E0', /* Card / Section Highlight */
+              borderCream: '#E2D1A6',/* Card Borders */
+              navy: '#1B2A4A',       /* Dark Navy Accent */
+              deepNavy: '#0F1B33',   /* Headers & Text Primary */
+              gold: '#C5A059',       /* Elegant Gold */
+              goldDark: '#9E7B35',
+              softSlate: '#4A5568'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F5E9CA;
+      color: #0F1B33;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-academic {
+      font-family: 'Playfair Display', serif;
+    }
+    .shadow-academic {
+      box-shadow: 0 10px 30px -5px rgba(27, 42, 74, 0.08), 0 4px 12px -2px rgba(27, 42, 74, 0.04);
+    }
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 35px -10px rgba(27, 42, 74, 0.15);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-brand-navy selection:text-brand-cream">
+
+  <!-- HEADER & NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 bg-brand-cream/95 backdrop-blur-md border-b border-brand-borderCream shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+      
+      <!-- Brand Logo / Name -->
+      <a href="#" class="flex items-center gap-4 group">
+        <!-- Graphic Plant/Book Logo matching the provided picture -->
+        <div class="w-12 h-14 bg-brand-navy flex flex-col items-center justify-end p-1.5 rounded-lg shadow-md border border-brand-gold/30 group-hover:scale-105 transition-transform">
+          <!-- Plant Icon -->
+          <svg class="w-7 h-7 text-brand-cream mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22V10"/>
+            <path d="M12 10C12 7 10 4 6 4C6 8 8 10 12 10Z"/>
+            <path d="M12 14C12 12 14 9 18 9C18 13 16 14 12 14Z"/>
+          </svg>
+          <!-- Stack of Books Line -->
+          <div class="w-full h-1 bg-brand-gold rounded-full"></div>
+          <div class="w-3/4 h-0.5 bg-brand-cream/60 rounded-full mt-0.5"></div>
+        </div>
+        <div class="border-l-2 border-brand-navy/30 pl-3.5">
+          <h1 class="font-academic text-xl sm:text-2xl font-bold tracking-tight text-brand-deepNavy leading-tight">
+            Invincible Aspirants Academy
+          </h1>
+          <p class="text-xs font-semibold tracking-widest text-brand-goldDark uppercase">Academic & IT Short Courses</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-bold text-brand-navy">
+        <a href="#about" class="hover:text-brand-gold transition-colors">About</a>
+        <a href="#academics" class="hover:text-brand-gold transition-colors">PG to 12th</a>
+        <a href="#courses" class="hover:text-brand-gold transition-colors">Short Courses</a>
+        <a href="#offer" class="hover:text-brand-gold transition-colors">Special Offer</a>
+        <a href="#contact" class="hover:text-brand-gold transition-colors">Contact</a>
+      </nav>
+
+      <!-- CTA Buttons -->
+      <div class="hidden sm:flex items-center gap-3">
+        <button onclick="scrollToAdmission()" class="bg-brand-navy hover:bg-brand-deepNavy text-brand-cream px-5 py-2.5 rounded-xl font-bold text-sm shadow-md transition flex items-center gap-2 border border-brand-gold/20">
+          <i class="fa-solid fa-file-pen text-brand-gold"></i> Apply Online
+        </button>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button onclick="toggleMobileMenu()" class="lg:hidden text-brand-deepNavy p-2 text-2xl focus:outline-none">
+        <i id="menuIcon" class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-lightCream border-b border-brand-borderCream px-6 py-5 space-y-4 text-base font-bold text-brand-deepNavy shadow-lg">
+      <a href="#about" onclick="toggleMobileMenu()" class="block hover:text-brand-gold">About Us</a>
+      <a href="#academics" onclick="toggleMobileMenu()" class="block hover:text-brand-gold">PG to 12th Academics</a>
+      <a href="#courses" onclick="toggleMobileMenu()" class="block hover:text-brand-gold">Short Courses</a>
+      <a href="#offer" onclick="toggleMobileMenu()" class="block hover:text-brand-gold">Special Bundle Offer</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block hover:text-brand-gold">Contact Us</a>
+      <div class="pt-2 border-t border-brand-borderCream">
+        <button onclick="toggleMobileMenu(); scrollToAdmission();" class="w-full bg-brand-navy text-brand-cream py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+          <i class="fa-solid fa-file-pen text-brand-gold"></i> Apply For Admission
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="about" class="relative py-16 lg:py-24 overflow-hidden border-b border-brand-borderCream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-navy/10 border border-brand-navy/20 text-brand-navy text-xs sm:text-sm font-bold uppercase tracking-wider">
+            <i class="fa-solid fa-award text-brand-goldDark"></i> Certificate Free with Every Short Course!
+          </div>
+
+          <h2 class="font-academic text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-deepNavy leading-tight">
+            Nurturing Excellence from <span class="italic text-brand-navy underline decoration-brand-gold/60 underline-offset-8">Playgroup to 12th</span> & Practical IT Skills
+          </h2>
+
+          <p class="text-base sm:text-lg text-brand-softSlate max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+            Welcome to <strong>Invincible Aspirants Academy</strong>. We provide standard academic coaching for school and college students alongside high-demand practical computer skills for career growth.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <button onclick="scrollToAdmission()" class="w-full sm:w-auto bg-brand-navy hover:bg-brand-deepNavy text-brand-cream font-bold px-8 py-4 rounded-xl shadow-lg transition text-base flex items-center justify-center gap-3 border border-brand-gold/30">
+              <span>Start Admission Form</span>
+              <i class="fa-solid fa-arrow-right text-brand-gold"></i>
+            </button>
+            <a href="#courses" class="w-full sm:w-auto bg-brand-lightCream hover:bg-brand-borderCream/50 text-brand-deepNavy font-bold px-8 py-4 rounded-xl border border-brand-borderCream transition text-base flex items-center justify-center gap-2">
+              <i class="fa-solid fa-laptop-code text-brand-navy"></i> View IT Courses
+            </a>
+          </div>
+
+          <!-- Highlight Badges -->
+          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-brand-borderCream/80 text-left">
+            <div>
+              <p class="text-2xl font-black text-brand-navy">PG - 12th</p>
+              <p class="text-xs font-semibold text-brand-softSlate uppercase">All Academic Subjects</p>
+            </div>
+            <div>
+              <p class="text-2xl font-black text-brand-navy">100% Free</p>
+              <p class="text-xs font-semibold text-brand-softSlate uppercase">Course Certificates</p>
+            </div>
+            <div>
+              <p class="text-2xl font-black text-brand-navy">Real Jobs</p>
+              <p class="text-xs font-semibold text-brand-softSlate uppercase">Practical Training</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Hero Card Graphic -->
+        <div class="lg:col-span-5">
+          <div class="bg-brand-navy text-brand-cream p-8 sm:p-10 rounded-3xl shadow-2xl relative border-2 border-brand-gold/40">
+            <div class="absolute -top-4 -right-4 bg-brand-gold text-brand-deepNavy font-bold text-xs uppercase px-4 py-2 rounded-full shadow-md tracking-wider">
+              Admissions Open 2026
+            </div>
+            
+            <h3 class="font-academic text-2xl font-bold text-brand-cream mb-4 border-b border-brand-cream/20 pb-3">
+              Why Choose IAA?
+            </h3>
+
+            <ul class="space-y-4 text-sm font-medium">
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <span><strong>Expert Faculty</strong> for Matric & Intermediate (FSc / ICS / FA / I.Com).</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <span><strong>Practical Computer Skills:</strong> MS Office, Graphic Design, Web & Python.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <span><strong>Flexible Timing:</strong> Morning, Evening & Special Weekend Batches.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <span><strong>Verified Certificates</strong> provided at no extra cost upon completion.</span>
+              </li>
+            </ul>
+
+            <div class="mt-8 pt-6 border-t border-brand-cream/20 flex items-center justify-between text-xs text-brand-cream/80">
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-brand-gold"></i> R-Block, LMC</span>
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-brand-gold"></i> +92 318 4400982</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMIC PROGRAMS (PG TO 12TH GRADE) -->
+  <section id="academics" class="py-20 bg-brand-lightCream border-b border-brand-borderCream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-brand-goldDark font-bold text-xs uppercase tracking-widest bg-brand-gold/20 px-3 py-1 rounded-full">School & College Level</span>
+        <h3 class="font-academic text-3xl sm:text-4xl font-extrabold text-brand-deepNavy mt-3">Academic Coaching Programs</h3>
+        <p class="text-brand-softSlate mt-2 font-medium">Complete syllabus coverage, conceptual learning, and board exam preparation.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Primary Level -->
+        <div class="bg-brand-cream rounded-2xl p-6 border border-brand-borderCream shadow-academic card-hover flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 bg-brand-navy text-brand-gold rounded-xl flex items-center justify-center text-xl mb-4 font-bold shadow-sm">
+              <i class="fa-solid fa-baby"></i>
+            </div>
+            <h4 class="font-academic text-xl font-bold text-brand-deepNavy">Primary Level</h4>
+            <p class="text-xs font-bold text-brand-goldDark uppercase mt-0.5">Playgroup to Grade 5</p>
+            <p class="text-xs text-brand-softSlate mt-3 leading-relaxed">
+              Focus on reading, handwriting improvement, conceptual mathematics, and basic English communication skills.
+            </p>
+            <ul class="mt-4 space-y-2 text-xs text-brand-deepNavy font-semibold">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Activity-based learning</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Daily diary & homework help</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Friendly environment</li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-borderCream">
+            <button onclick="selectCourseAndEnroll('Primary (PG to Grade 5)')" class="w-full bg-brand-navy text-brand-cream hover:bg-brand-deepNavy text-xs font-bold py-2.5 rounded-lg transition">
+              Enroll in Primary
+            </button>
+          </div>
+        </div>
+
+        <!-- Middle Level -->
+        <div class="bg-brand-cream rounded-2xl p-6 border border-brand-borderCream shadow-academic card-hover flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 bg-brand-navy text-brand-gold rounded-xl flex items-center justify-center text-xl mb-4 font-bold shadow-sm">
+              <i class="fa-solid fa-book-open-reader"></i>
+            </div>
+            <h4 class="font-academic text-xl font-bold text-brand-deepNavy">Middle Level</h4>
+            <p class="text-xs font-bold text-brand-goldDark uppercase mt-0.5">Grade 6th to 8th</p>
+            <p class="text-xs text-brand-softSlate mt-3 leading-relaxed">
+              Strengthening core Science, Mathematics, English Grammar, and Urdu concepts to prepare for High School.
+            </p>
+            <ul class="mt-4 space-y-2 text-xs text-brand-deepNavy font-semibold">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Subject specialist teachers</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Weekly assessment tests</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Science fundamentals</li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-borderCream">
+            <button onclick="selectCourseAndEnroll('Middle Class (6th to 8th)')" class="w-full bg-brand-navy text-brand-cream hover:bg-brand-deepNavy text-xs font-bold py-2.5 rounded-lg transition">
+              Enroll in Middle
+            </button>
+          </div>
+        </div>
+
+        <!-- High School (Matric) -->
+        <div class="bg-brand-cream rounded-2xl p-6 border-2 border-brand-navy/40 shadow-academic card-hover flex flex-col justify-between relative">
+          <span class="absolute -top-3 right-4 bg-brand-navy text-brand-gold text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">Board Focus</span>
+          <div>
+            <div class="w-12 h-12 bg-brand-navy text-brand-gold rounded-xl flex items-center justify-center text-xl mb-4 font-bold shadow-sm">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h4 class="font-academic text-xl font-bold text-brand-deepNavy">Matriculation</h4>
+            <p class="text-xs font-bold text-brand-goldDark uppercase mt-0.5">9th & 10th (Science / Arts)</p>
+            <p class="text-xs text-brand-softSlate mt-3 leading-relaxed">
+              Rigorous preparation for Board Exams including Physics, Chemistry, Biology, Computer Science & Mathematics.
+            </p>
+            <ul class="mt-4 space-y-2 text-xs text-brand-deepNavy font-semibold">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Solved Past Papers practice</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Full syllabus revision session</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Board paper presentation guidance</li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-borderCream">
+            <button onclick="selectCourseAndEnroll('Matric (9th / 10th)')" class="w-full bg-brand-navy text-brand-cream hover:bg-brand-deepNavy text-xs font-bold py-2.5 rounded-lg transition">
+              Enroll in Matric
+            </button>
+          </div>
+        </div>
+
+        <!-- Intermediate -->
+        <div class="bg-brand-cream rounded-2xl p-6 border border-brand-borderCream shadow-academic card-hover flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 bg-brand-navy text-brand-gold rounded-xl flex items-center justify-center text-xl mb-4 font-bold shadow-sm">
+              <i class="fa-solid fa-university"></i>
+            </div>
+            <h4 class="font-academic text-xl font-bold text-brand-deepNavy">Intermediate</h4>
+            <p class="text-xs font-bold text-brand-goldDark uppercase mt-0.5">11th & 12th (FSc / ICS / FA / I.Com)</p>
+            <p class="text-xs text-brand-softSlate mt-3 leading-relaxed">
+              Comprehensive coaching for Pre-Medical, Pre-Engineering, Computer Science, and Arts with entry-test foundation.
+            </p>
+            <ul class="mt-4 space-y-2 text-xs text-brand-deepNavy font-semibold">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Highly qualified senior staff</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Monthly Grand Mock Tests</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-navy"></i> Guidance for university admissions</li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-borderCream">
+            <button onclick="selectCourseAndEnroll('Intermediate (11th / 12th)')" class="w-full bg-brand-navy text-brand-cream hover:bg-brand-deepNavy text-xs font-bold py-2.5 rounded-lg transition">
+              Enroll in Intermediate
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SHORT COURSES SECTION (EXTRACTED FROM BROCHURE) -->
+  <section id="courses" class="py-20 border-b border-brand-borderCream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-brand-goldDark font-bold text-xs uppercase tracking-widest bg-brand-gold/20 px-3 py-1 rounded-full">Practical Computer Skills</span>
+        <h3 class="font-academic text-3xl sm:text-4xl font-extrabold text-brand-deepNavy mt-3">Professional IT Short Courses</h3>
+        <p class="text-brand-softSlate mt-2 font-medium">Real skills, practical hands-on training, and free completion certificates for job readiness.</p>
+      </div>
+
+      <!-- Grid of 4 Course Categories from Brochure -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- 1. Basic Computer Courses -->
+        <div class="bg-brand-lightCream rounded-2xl p-6 border border-brand-borderCream shadow-academic card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-8 h-8 rounded-lg bg-brand-navy text-brand-gold font-black flex items-center justify-center text-sm">1</span>
+              <i class="fa-solid fa-desktop text-2xl text-brand-navy"></i>
+            </div>
+            <h4 class="font-academic text-lg font-bold text-brand-deepNavy mb-4">Basic Computer Courses</h4>
+
+            <div class="space-y-3">
+              <div class="p-3 bg-brand-cream rounded-xl border border-brand-borderCream">
+                <p class="font-bold text-xs text-brand-deepNavy">MS Office Suite</p>
+                <p class="text-[11px] text-brand-softSlate">Word, Excel, PowerPoint & Typing</p>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-brand-borderCream/60 text-xs font-bold">
+                  <span class="text-brand-softSlate"><i class="fa-regular fa-clock"></i> 2 Months</span>
+                  <span class="text-brand-navy font-black">Rs. 10,000</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-brand-cream rounded-xl border border-brand-borderCream">
+                <p class="font-bold text-xs text-brand-deepNavy">Computer Basics / ICT</p>
+                <p class="text-[11px] text-brand-softSlate">OS, Internet, Typing Fundamentals</p>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-brand-borderCream/60 text-xs font-bold">
+                  <span class="text-brand-softSlate"><i class="fa-regular fa-clock"></i> 1 Month</span>
+                  <span class="text-brand-navy font-black">Rs. 4,000</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-brand-cream rounded-xl border border-brand-borderCream">
+                <p class="font-bold text-xs text-brand-deepNavy">Advanced Excel</p>
+                <p class="text-[11px] text-brand-softSlate">Formulas, Pivot Tables, Dashboards</p>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-brand-borderCream/60 text-xs font-bold">
+                  <span class="text-brand-softSlate"><i class="fa-regular fa-clock"></i> 1.5 Months</span>
+                  <span class="text-brand-navy font-black">Rs. 6,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button onclick="scrollToAdmission()" class="mt-6 w-full bg-brand-navy text-brand-cream hover:bg-brand-deepNavy text-xs font-bold py-2.5 rounded-lg transition">
+            Apply For Basic Courses
+          </button>
+        </div>
+
+        <!-- 2. Design & Creative -->
+        <div class="bg-brand-lightCream rounded-2xl p-6 border border-brand-borderCream shadow-academic card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-8 h-8 rounded-lg bg-brand-navy text-brand-gold font-black flex items-center justify-center text-sm">2</span>
+              <i class="fa-solid fa-palette text-2xl text-brand-navy"></i>
+            </div>
+            <h4 class="font-academic text-lg font-bold text-brand-deepNavy mb-4">Design & Creative</h4>
+
+            <div class="space-y-3">
+              <div class="p-3 bg-brand-cream rounded-xl border border-brand-borderCream">
+                <p class="font-bold text-xs text-brand-deepNavy">Graphic Designing</p>
+                <p class="text-[11px] text-brand-softSlate">Photoshop, Illustrator, Canva</p>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-brand-borderCream/60 text-xs font-bold">
+                  <span class="text-brand-softSlate"><i class="fa-regular fa-clock"></i> 3 Months</span>
+                  <span class="text-brand-navy font-black">Rs. 15,000</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-brand-cream rounded-xl border border-brand-borderCream">
+                <p class="font-bold text-xs text-brand-deepNavy">Video Editing</p>
+                <p class="text-[11px] text-brand-softSlate">Premiere Pro / CapCut Professional</p>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-brand-borderCream/60 text-xs font-bold">
+                  <span class="text-brand-softSlate"><i class="fa-regular fa-clock"></i> 2 Months</span>
+                  <span class="text-brand-navy font-black">Rs. 12,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button onclick="scrollToAdmission()" class="mt-6 w-full bg-brand-navy text-brand-cream hover:bg-brand-deepNavy text-xs font-bold py-2.5 rounded-lg transition">
+            Apply For Creative Courses
+          </button>
+        </div>
+
+        <!-- 3. Web & Programming -->
+        <div class="bg-brand-lightCream rounded-2xl p-6 border border-brand-borderCream shadow-academic card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-8 h-8 rounded-lg bg-brand-navy text-brand-gold font-black flex items-center justify-center text-sm">3</span>
+              <i class="fa-solid fa-code text-2xl text-brand-navy"></i>
+            </div>
+            <h4 class="font-academic text-lg font-bold text-brand-deepNavy mb-4">Web & Programming</h4>
+
+            <div class="space-y-3">
+              <div class="p-3 bg-brand-cream rounded-xl border border-brand-borderCream">
+                <p class="font-bold text-xs text-brand-deepNavy">Web Development</p>
+                <p class="text-[11px] text-brand-softSlate">HTML, CSS, JS Basics & Layouts</p>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-brand-borderCream/60 text-xs font-bold">
+                  <span class="text-brand-softSlate"><i class="fa-regular fa-clock"></i> 3 Months</span>
+                  <span class="text-brand-navy font-black">Rs. 18,000</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-brand-cream rounded-xl border border-brand-borderCream">
+                <p class="font-bold text-xs text-brand-deepNavy">Python Programming</p>
+                <p class="text-[11px] text-brand-softSlate">For Absolute Beginners to Logic</p>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-brand-borderCream/60 text-xs font-bold">
+                  <span class="text-brand-softSlate"><i class="fa-regular fa-clock"></i> 2 Months</span>
+                  <span class="text-brand-navy font-black">Rs. 10,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button onclick="scrollToAdmission()" class="mt-6 w-full bg-brand-navy text-brand-cream hover:bg-brand-deepNavy text-xs font-bold py-2.5 rounded-lg transition">
+            Apply For Programming
+          </button>
+        </div>
+
+        <!-- 4. Office & Freelancing -->
+        <div class="bg-brand-lightCream rounded-2xl p-6 border border-brand-borderCream shadow-academic card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-8 h-8 rounded-lg bg-brand-navy text-brand-gold font-black flex items-center justify-center text-sm">4</span>
+              <i class="fa-solid fa-briefcase text-2xl text-brand-navy"></i>
+            </div>
+            <h4 class="font-academic text-lg font-bold text-brand-deepNavy mb-4">Office & Freelancing</h4>
+
+            <div class="space-y-3">
+              <div class="p-3 bg-brand-cream rounded-xl border border-brand-borderCream">
+                <p class="font-bold text-xs text-brand-deepNavy">Freelancing & Marketing</p>
+                <p class="text-[11px] text-brand-softSlate">Fiverr, Upwork & Basic SEO</p>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-brand-borderCream/60 text-xs font-bold">
+                  <span class="text-brand-softSlate"><i class="fa-regular fa-clock"></i> 1.5 Months</span>
+                  <span class="text-brand-navy font-black">Rs. 9,000</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-brand-cream rounded-xl border border-brand-borderCream">
+                <p class="font-bold text-xs text-brand-deepNavy">Typing & Office Assistant</p>
+                <p class="text-[11px] text-brand-softSlate">Speed Typing & Documentation</p>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-brand-borderCream/60 text-xs font-bold">
+                  <span class="text-brand-softSlate"><i class="fa-regular fa-clock"></i> 1 Month</span>
+                  <span class="text-brand-navy font-black">Standard Fee</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button onclick="scrollToAdmission()" class="mt-6 w-full bg-brand-navy text-brand-cream hover:bg-brand-deepNavy text-xs font-bold py-2.5 rounded-lg transition">
+            Apply For Freelancing
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL OFFER BUNDLE BANNER -->
+  <section id="offer" class="py-12 bg-brand-navy text-brand-cream border-y border-brand-gold/30 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="bg-brand-deepNavy/80 rounded-3xl p-8 sm:p-10 border-2 border-brand-gold/50 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+        
+        <div class="flex items-center gap-6">
+          <div class="w-20 h-20 bg-brand-gold/20 border-2 border-brand-gold rounded-2xl flex items-center justify-center text-4xl text-brand-gold shrink-0">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+          <div>
+            <span class="bg-brand-gold text-brand-deepNavy font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Best Value Package</span>
+            <h4 class="font-academic text-2xl sm:text-3xl font-bold text-brand-cream mt-2">Complete Office Package</h4>
+            <p class="text-sm text-brand-cream/80 mt-1 max-w-xl">
+              Includes <strong>MS Office Suite + Speed Typing + Computer Basics</strong> bundled into one practical mastery course.
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center lg:text-right shrink-0 w-full lg:w-auto bg-brand-navy p-6 rounded-2xl border border-brand-gold/30">
+          <p class="text-xs text-brand-cream/70 uppercase font-semibold">Special Discounted Fee</p>
+          <p class="text-3xl sm:text-4xl font-extrabold text-brand-gold mt-1">Rs. 14,000</p>
+          <button onclick="selectCourseAndEnroll('Complete Office Package Bundle (Rs. 14,000)')" class="mt-3 w-full bg-brand-gold hover:bg-brand-goldDark text-brand-deepNavy font-bold px-6 py-3 rounded-xl transition text-sm shadow-md">
+            Claim Package Discount
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMISSION SYSTEM & FEE ESTIMATOR -->
+  <section id="admission" class="py-20 bg-brand-lightCream border-b border-brand-borderCream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12">
+        <span class="text-brand-goldDark font-bold text-xs uppercase tracking-widest bg-brand-gold/20 px-3 py-1 rounded-full">Easy Online Application</span>
+        <h3 class="font-academic text-3xl sm:text-4xl font-extrabold text-brand-deepNavy mt-3">Academy Admission Portal</h3>
+        <p class="text-brand-softSlate mt-2 font-medium">Fill out your details below to submit your admission application directly to our official WhatsApp helpline.</p>
+      </div>
+
+      <!-- Admission Form Card -->
+      <div class="bg-brand-cream rounded-3xl p-6 sm:p-10 border-2 border-brand-borderCream shadow-academic">
+        
+        <form id="admissionForm" onsubmit="handleAdmissionSubmit(event)" class="space-y-6">
+          
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-brand-deepNavy uppercase mb-2">Student Full Name *</label>
+              <input type="text" id="stdName" required placeholder="e.g. Muhammad Zeeshan" class="w-full bg-brand-lightCream border border-brand-borderCream rounded-xl px-4 py-3 text-sm text-brand-deepNavy focus:outline-none focus:border-brand-navy">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-brand-deepNavy uppercase mb-2">Father / Guardian Name *</label>
+              <input type="text" id="fatherName" required placeholder="e.g. Tariq Awan" class="w-full bg-brand-lightCream border border-brand-borderCream rounded-xl px-4 py-3 text-sm text-brand-deepNavy focus:outline-none focus:border-brand-navy">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-brand-deepNavy uppercase mb-2">WhatsApp Contact Phone *</label>
+              <input type="tel" id="stdPhone" required placeholder="0318 4400982" class="w-full bg-brand-lightCream border border-brand-borderCream rounded-xl px-4 py-3 text-sm text-brand-deepNavy focus:outline-none focus:border-brand-navy">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-brand-deepNavy uppercase mb-2">Email Address</label>
+              <input type="email" id="stdEmail" placeholder="e.g. zeeshanawan@gmail.com" class="w-full bg-brand-lightCream border border-brand-borderCream rounded-xl px-4 py-3 text-sm text-brand-deepNavy focus:outline-none focus:border-brand-navy">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-brand-deepNavy uppercase mb-2">Program Category *</label>
+              <select id="programCategory" onchange="updateCourseOptions()" class="w-full bg-brand-lightCream border border-brand-borderCream rounded-xl px-4 py-3 text-sm text-brand-deepNavy focus:outline-none focus:border-brand-navy font-semibold">
+                <option value="short">Short IT Course</option>
+                <option value="academic">Academic Class (PG to 12th)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-brand-deepNavy uppercase mb-2">Select Course / Grade *</label>
+              <select id="selectedCourse" onchange="calculateFee()" class="w-full bg-brand-lightCream border border-brand-borderCream rounded-xl px-4 py-3 text-sm text-brand-deepNavy focus:outline-none focus:border-brand-navy font-semibold">
+                <!-- Dynamic Course Options Populated via JS -->
+              </select>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-brand-deepNavy uppercase mb-2">Preferred Shift *</label>
+              <select id="selectedShift" class="w-full bg-brand-lightCream border border-brand-borderCream rounded-xl px-4 py-3 text-sm text-brand-deepNavy focus:outline-none focus:border-brand-navy font-semibold">
+                <option value="Morning">Morning Shift</option>
+                <option value="Evening">Evening Shift</option>
+                <option value="Weekend">Weekend Special Batch</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-brand-deepNavy uppercase mb-2">Estimated Course Fee</label>
+              <div id="feeDisplay" class="w-full bg-brand-navy text-brand-gold font-extrabold rounded-xl px-4 py-3 text-base flex items-center justify-between border border-brand-gold/30">
+                <span>Total Fee:</span>
+                <span id="feeAmount">Rs. 10,000</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-brand-deepNavy uppercase mb-2">Additional Remarks / Residential Address</label>
+            <textarea id="remarks" rows="3" placeholder="Enter your complete address or specific queries..." class="w-full bg-brand-lightCream border border-brand-borderCream rounded-xl px-4 py-3 text-sm text-brand-deepNavy focus:outline-none focus:border-brand-navy"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-brand-navy hover:bg-brand-deepNavy text-brand-cream font-bold py-4 rounded-xl shadow-lg transition text-base flex items-center justify-center gap-3 border border-brand-gold/30">
+            <i class="fa-brands fa-whatsapp text-green-400 text-xl"></i>
+            <span>Send Admission Form via WhatsApp</span>
+          </button>
+          
+          <p class="text-center text-xs text-brand-softSlate">Your details will be formatted into an official application message sent to +92 318 4400982.</p>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT SECTION -->
+  <footer id="contact" class="bg-brand-deepNavy text-brand-cream pt-16 pb-8 border-t-2 border-brand-gold/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-brand-cream/10">
+        
+        <!-- Academy Info -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-brand-gold/20 border border-brand-gold rounded-lg flex items-center justify-center text-brand-gold">
+              <i class="fa-solid fa-graduation-cap text-lg"></i>
+            </div>
+            <div>
+              <h5 class="font-academic text-lg font-bold text-brand-cream leading-tight">Invincible Aspirants</h5>
+              <p class="text-[10px] text-brand-gold uppercase tracking-widest font-semibold">Academy</p>
+            </div>
+          </div>
+          <p class="text-xs text-brand-cream/70 leading-relaxed">
+            Delivering quality education for Playgroup to 12th Grade and modern professional short IT courses to build real career opportunities.
+          </p>
+        </div>
+
+        <!-- Official Contact Details -->
+        <div>
+          <h5 class="font-academic text-lg font-bold text-brand-cream mb-4 border-b border-brand-gold/30 pb-2">Official Contact</h5>
+          <ul class="space-y-3 text-xs text-brand-cream/80 font-medium">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-phone text-brand-gold mt-1"></i>
+              <div>
+                <p class="text-brand-cream font-bold">Call / WhatsApp Helpline:</p>
+                <p class="text-brand-gold">+92 318 4400982</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-envelope text-brand-gold mt-1"></i>
+              <div>
+                <p class="text-brand-cream font-bold">Official Email:</p>
+                <p>zeeshanawan@gmail.com</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-location-dot text-brand-gold mt-1"></i>
+              <div>
+                <p class="text-brand-cream font-bold">Academy Campus:</p>
+                <p>Plot 211, R-Block, LMC</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h5 class="font-academic text-lg font-bold text-brand-cream mb-4 border-b border-brand-gold/30 pb-2">Quick Navigation</h5>
+          <ul class="space-y-2 text-xs text-brand-cream/80">
+            <li><a href="#about" class="hover:text-brand-gold transition">About Invincible Aspirants Academy</a></li>
+            <li><a href="#academics" class="hover:text-brand-gold transition">PG to 12th Class Admissions</a></li>
+            <li><a href="#courses" class="hover:text-brand-gold transition">Short Computer Courses Fee</a></li>
+            <li><a href="#offer" class="hover:text-brand-gold transition">Complete Office Package (Rs. 14,000)</a></li>
+            <li><a href="#admission" class="hover:text-brand-gold transition">Online Admission Form</a></li>
+          </ul>
+        </div>
+
+        <!-- Working Hours / Certificate Badge -->
+        <div>
+          <h5 class="font-academic text-lg font-bold text-brand-cream mb-4 border-b border-brand-gold/30 pb-2">Class Timings</h5>
+          <div class="bg-brand-navy p-4 rounded-xl border border-brand-gold/20 text-xs space-y-2">
+            <p class="flex justify-between"><span>Morning Shift:</span> <span class="font-bold text-brand-gold">08:00 AM - 12:00 PM</span></p>
+            <p class="flex justify-between"><span>Evening Shift:</span> <span class="font-bold text-brand-gold">03:00 PM - 08:00 PM</span></p>
+            <p class="flex justify-between"><span>Sunday:</span> <span class="text-red-400 font-bold">Special Classes</span></p>
+          </div>
+          <div class="mt-4 flex items-center gap-2 text-xs text-brand-gold">
+            <i class="fa-solid fa-certificate text-base"></i>
+            <span>Verified Certificate with Every Short Course</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-cream/50 gap-4">
+        <p>© 2026 Invincible Aspirants Academy. All rights reserved.</p>
+        <p>Helpline: +92 318 4400982 | zeeshanawan@gmail.com</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Course catalog fee dictionary
+    const courseFeeData = {
+      short: [
+        { name: "MS Office Suite (2 Months)", fee: "Rs. 10,000" },
+        { name: "Computer Basics / ICT (1 Month)", fee: "Rs. 4,000" },
+        { name: "Advanced Excel (1.5 Months)", fee: "Rs. 6,000" },
+        { name: "Graphic Designing (3 Months)", fee: "Rs. 15,000" },
+        { name: "Video Editing (2 Months)", fee: "Rs. 12,000" },
+        { name: "Web Development (3 Months)", fee: "Rs. 18,000" },
+        { name: "Python Programming (2 Months)", fee: "Rs. 10,000" },
+        { name: "Freelancing & Marketing (1.5 Months)", fee: "Rs. 9,000" },
+        { name: "Complete Office Package Bundle (Rs. 14,000)", fee: "Rs. 14,000" },
+        { name: "Typing & Office Assistant Course (1 Month)", fee: "Standard Fee" }
+      ],
+      academic: [
+        { name: "Primary (PG to Grade 5)", fee: "Standard Fee" },
+        { name: "Middle Class (6th to 8th)", fee: "Standard Fee" },
+        { name: "Matric Science (9th / 10th)", fee: "Standard Fee" },
+        { name: "Matric Arts (9th / 10th)", fee: "Standard Fee" },
+        { name: "Intermediate FSc Pre-Med (11th / 12th)", fee: "Standard Fee" },
+        { name: "Intermediate FSc Pre-Eng (11th / 12th)", fee: "Standard Fee" },
+        { name: "Intermediate ICS (11th / 12th)", fee: "Standard Fee" },
+        { name: "Intermediate FA / I.Com (11th / 12th)", fee: "Standard Fee" }
+      ]
+    };
+
+    // Populate dynamic course options based on category
+    function updateCourseOptions() {
+      const category = document.getElementById("programCategory").value;
+      const courseSelect = document.getElementById("selectedCourse");
+      courseSelect.innerHTML = "";
+
+      courseFeeData[category].forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.name;
+        option.textContent = item.name;
+        option.dataset.fee = item.fee;
+        courseSelect.appendChild(option);
+      });
+
+      calculateFee();
+    }
+
+    // Display selected course fee
+    function calculateFee() {
+      const courseSelect = document.getElementById("selectedCourse");
+      const selectedOption = courseSelect.options[courseSelect.selectedIndex];
+      const feeAmountDisplay = document.getElementById("feeAmount");
+      
+      if (selectedOption && selectedOption.dataset.fee) {
+        feeAmountDisplay.textContent = selectedOption.dataset.fee;
+      } else {
+        feeAmountDisplay.textContent = "Standard Fee";
+      }
+    }
+
+    // Quick selection button handler from cards
+    function selectCourseAndEnroll(courseName) {
+      scrollToAdmission();
+      
+      // Determine category
+      const isAcademic = courseName.includes("Primary") || courseName.includes("Middle") || courseName.includes("Matric") || courseName.includes("Intermediate");
+      document.getElementById("programCategory").value = isAcademic ? "academic" : "short";
+      updateCourseOptions();
+
+      // Find and select option
+      const courseSelect = document.getElementById("selectedCourse");
+      for (let i = 0; i < courseSelect.options.length; i++) {
+        if (courseSelect.options[i].value.includes(courseName) || courseName.includes(courseSelect.options[i].value)) {
+          courseSelect.selectedIndex = i;
+          break;
+        }
+      }
+      calculateFee();
+    }
+
+    // Scroll helper
+    function scrollToAdmission() {
+      document.getElementById("admission").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Mobile Navigation Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobileMenu");
+      const icon = document.getElementById("menuIcon");
+      menu.classList.toggle("hidden");
+      if (menu.classList.contains("hidden")) {
+        icon.className = "fa-solid fa-bars";
+      } else {
+        icon.className = "fa-solid fa-xmark";
+      }
+    }
+
+    // Handle Form Submit to WhatsApp
+    function handleAdmissionSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("stdName").value.trim();
+      const father = document.getElementById("fatherName").value.trim();
+      const phone = document.getElementById("stdPhone").value.trim();
+      const email = document.getElementById("stdEmail").value.trim() || 'N/A';
+      const programType = document.getElementById("programCategory").options[document.getElementById("programCategory").selectedIndex].text;
+      const course = document.getElementById("selectedCourse").value;
+      const fee = document.getElementById("feeAmount").textContent;
+      const shift = document.getElementById("selectedShift").value;
+      const remarks = document.getElementById("remarks").value.trim() || 'N/A';
+
+      // Format WhatsApp Message
+      const message = 
+        `*NEW ADMISSION APPLICATION*%0A` +
+        `*Invincible Aspirants Academy*%0A` +
+        `------------------------------------%0A` +
+        `👤 *Student Name:* ${encodeURIComponent(name)}%0A` +
+        `👨‍👦 *Father Name:* ${encodeURIComponent(father)}%0A` +
+        `📞 *Contact Phone:* ${encodeURIComponent(phone)}%0A` +
+        `📧 *Email:* ${encodeURIComponent(email)}%0A` +
+        `📚 *Program Type:* ${encodeURIComponent(programType)}%0A` +
+        `🎓 *Selected Course/Grade:* ${encodeURIComponent(course)}%0A` +
+        `💰 *Course Fee:* ${encodeURIComponent(fee)}%0A` +
+        `⏰ *Shift:* ${encodeURIComponent(shift)}%0A` +
+        `📝 *Address/Remarks:* ${encodeURIComponent(remarks)}%0A` +
+        `------------------------------------%0A` +
+        `Submitted via Online Admission Portal.`;
+
+      // Redirect to Official WhatsApp Number
+      const whatsappURL = `https://wa.me/923184400982?text=${message}`;
+      window.open(whatsappURL, '_blank');
+    }
+
+    // Initialize course options on load
+    window.onload = function() {
+      updateCourseOptions();
+    };
+  </script>
+</body>
+</html>
